@@ -8,6 +8,23 @@ function changeState(state, action) {
 }
 
 let state = { count: 0 };
-let action = { type: "counter/increment" };
 
-changeState(state, action);
+// reassining the state to the return value so as to persist our changes in state
+function dispatch(action){
+  state = changeState(state, action);
+  // call the render function
+  render();;
+}
+
+function render() {
+  document.body.textContent = state.count;
+}
+
+
+
+console.log(dispatch({ type: "counter/increment" }))
+// => {count: 1}
+console.log(dispatch({ type: "counter/increment" }))
+// => {count: 1}
+console.log(dispatch({ type: "counter/increment" }))
+// => {count: 1}
